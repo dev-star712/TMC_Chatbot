@@ -1,0 +1,30 @@
+server {
+    server_name ai2.tmcmotors.co.uk;
+server_tokens off;
+resolver 127.0.0.11 ipv6=off;
+
+    if ($host = ai2.tmcmotors.co.uk) {
+        return 301 https://www.tmcmotors.co.uk$request_uri;
+    }
+
+
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/ai2.tmcmotors.co.uk/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/ai2.tmcmotors.co.uk/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+}
+server {
+    if ($host = ai2.tmcmotors.co.uk) {
+        return 301 https://www.tmcmotors.co.uk$request_uri;
+    } # managed by Certbot
+
+
+    listen 80;
+    server_name ai2.tmcmotors.co.uk;
+    return 404; # managed by Certbot
+
+
+}

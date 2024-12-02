@@ -1,0 +1,31 @@
+server {
+    server_name app.tmcmotors.co.uk;
+	server_tokens off;
+	resolver 127.0.0.11 ipv6=off;
+
+    if ($host = app.tmcmotors.co.uk) {
+        return 301 https://www.tmcmotors.co.uk$request_uri;
+    }
+
+    error_log    /var/log/nginx/app.tmcmotors.co.uk.error.log error;
+
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/app.tmcmotors.co.uk/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/app.tmcmotors.co.uk/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+}
+server {
+    if ($host = app.tmcmotors.co.uk) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    listen 80;
+    server_name app.tmcmotors.co.uk;
+    return 404; # managed by Certbot
+
+
+}

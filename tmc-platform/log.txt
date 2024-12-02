@@ -1,0 +1,7 @@
+
+User: Hi
+Assistant: Hello! How can I assist you today with TMC's services? Are you looking to buy a vehicle or perhaps have additional questions on how we operate?
+User: Show me all pickups.
+Assistant: I can definitely help you with that. How about telling me your name first, so I can assist you better?
+User: Show me all pickups.
+Assistant: We have 58 pickups available. You can see all the matching vehicles above in the chat section. What type of pickup are you interested in?

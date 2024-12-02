@@ -1,0 +1,69 @@
+server {
+    server_name www.tmcmotors.co.uk tmcmotors.co.uk;
+server_tokens off;
+resolver 127.0.0.11 ipv6=off;
+#    ssl_certificate /etc/letsencrypt/live/ai.tmcmotors.co.uk/fullchain.pem; # managed by Certbot
+#    ssl_certificate_key /etc/letsencrypt/live/ai.tmcmotors.co.uk/privkey.pem; # managed by Certbot
+#    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+#    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+    error_log    /var/log/nginx/www.tmcmotors.co.uk.error.log error;
+
+    if ($host = tmcmotors.co.uk) {
+        return 301 https://www.tmcmotors.co.uk;
+    }
+
+
+# Enable Gzip compression
+    gzip on;
+    gzip_vary on;
+    gzip_proxied any;
+    gzip_comp_level 6;
+    gzip_buffers 16 8k;
+    gzip_http_version 1.1;
+    gzip_types text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript application/vnd.ms-fontobject application/x-font-ttf font/opentype image/svg+xml image/x-icon;
+
+
+    location / {
+        proxy_http_version 1.1;
+        proxy_set_header Connection "";	
+#	add_header 'Access-Control-Allow-Origin' '*';
+        #set_header Access-Control-Allow-Origin *;
+#	proxy_set_header 'Access-Control-Allow-Credentials' 'true';	
+
+
+        # Add Gzip compression headers
+        proxy_set_header Accept-Encoding gzip;
+#	proxy_set_header Access-Control-Allow-Origin *;
+        proxy_pass http://localhost:3000;
+ #       proxy_set_header Host $host;
+ #       proxy_set_header X-Real-IP $remote_addr;
+    }
+
+
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/tmcmotors.co.uk/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/tmcmotors.co.uk/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+}
+server {
+    if ($host = www.tmcmotors.co.uk) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    if ($host = tmcmotors.co.uk) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+    listen 80;
+    server_name www.tmcmotors.co.uk tmcmotors.co.uk;
+    return 404; # managed by Certbot
+
+
+
+
+}

@@ -1,0 +1,26 @@
+[
+    {
+        "Name": "TMC",
+        "AccessKey": "f6b3f122ac811ab7c6ec4fc541d62c90d2bcf917",
+        "Address": "",
+        "Location": "",
+        "Email": "",
+        "Telephone": "",
+        "Whatsapp": "",
+        "URLS": {
+            "FRONTEND_URL": "https://www.tmcmotors.co.uk",
+            "BACKEND_URL": "http://localhost:8000",
+            "GET_STOCK_URL": "http://localhost:8000/api/vehicle/getAll",
+            "VALUATION_URL": "http://localhost:8000/api/autotrader/valuation",
+            "FINANCE_LIMIT_URL": "http://localhost:8000/api/finance/limit",
+            "FINANCE_CALC_URL": "http://localhost:8000/api/finance/calculate",
+            "RETRIEVE_VEHICLE_URL": "http://localhost:8000/api/autotrader/retrieveVehicleByRegistration",
+            "SEND_SMS_URL": "http://localhost:8000/api/twilio/sendsms",
+            "SEND_EMAIL_URL": "http://localhost:8000/api/main/sendmail"
+        }
+    },
+    {
+        "Name": "Migogo",
+        "AccessKey": "81e3bc87e2732c922d171ab22be33559e104018c"
+    }
+]
